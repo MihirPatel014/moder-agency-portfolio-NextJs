@@ -8,10 +8,6 @@ const HeaderComp = dynamic(() => import('./components/Header'), { ssr: false })
 const FooterComp = dynamic(() => import('./components/Footer'), { ssr: false })
 const inter = Inter({ subsets: ["latin"] })
 
- const metadata = {
-  title: "Modern Agency",
-  description: "Showcasing our core services: Development, Marketing, Consulting, and Content Creation",
-}
 
 export default function RootLayout({
   children,
