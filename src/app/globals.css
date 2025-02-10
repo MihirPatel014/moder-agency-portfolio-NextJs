@@ -1,21 +1,113 @@
+/* Tailwind CSS Imports */
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+  --foreground-rgb: 0, 0, 0;
+  --background-start-rgb: 214, 219, 220;
+  --background-end-rgb: 255, 255, 255;
+  --card-height: 35vw; /* Adjust height */
+  --card-margin: 2vw; /* Reduced margin */
+  --numcards: 4;
+  --card-top-offset:6rem; /* Added missing offset */
+  --card-index:1;
 }
 
 body {
-  color: var(--foreground);
-  background: var(--background);
-  font-family: Arial, Helvetica, sans-serif;
+  color: rgb(var(--foreground-rgb));
+  background: linear-gradient(to bottom, transparent, rgb(var(--background-end-rgb)))
+    rgb(var(--background-start-rgb));
+  scroll-behavior: smooth;
+}
+
+#cards {
+  list-style: none;
+  /* display: flex; */ /*  Change back to grid  */
+  /* flex-direction: column;  Remove this line */
+  display: grid;
+  grid-template-columns: 1fr; /* Single column layout */
+  grid-template-rows: repeat(var(--numcards), var(--card-height)); /* Define row heights */
+  gap: var(--card-margin); /* Gap between cards */
+  padding-bottom: calc(var(--numcards) * var(--card-top-offset)); /* Add padding for the stacking offset */
+  margin-bottom: var(--card-margin);
+}
+
+.card {
+  position: sticky; /*  Enable sticky positioning */
+  top: 0; /* Stick to the top of the viewport */
+  padding-top: calc(var(--card-index) * var(--card-top-offset)); /*  Offset each card */
+  margin:2rem 10rem;
+}
+
+.card__content {
+  box-shadow: 0 0.2em 1em rgba(0, 0, 0, 0.1), 0 1em 2em rgba(0, 0, 0, 0.1);
+  background: rgb(255, 255, 255);
+  color: rgb(10, 5, 7);
+  border-radius: 1em;
+  overflow: hidden;
+
+  display: grid;
+  grid-template-areas: 'text img';
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: auto;
+  align-items: stretch;
+}
+
+.card__content > div {
+  grid-area: text;
+  width: 80%;
+  place-self: center;
+  text-align: left;
+  display: grid;
+  gap: 1em;
+  place-items: start;
+}
+
+.card__content > figure {
+  grid-area: img;
+  overflow: hidden;
+}
+
+.card__content > figure > img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* Media Queries */
+@media (max-width: 640px) {
+  .container {
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
+
+  #cards {
+    margin-bottom: 1em;
+  }
+}
+
+/* Fix the spacing between cards for smaller screen sizes */
+@media (max-width: 768px) {
+  #cards {
+    gap: 2vw; /* Adjust gap for small screens */
+  }
+}
+
+/* Additional Tailwind-like utilities (optional) */
+.bg-gradient-to-r {
+  background-image: linear-gradient(to right, var(--tw-gradient-stops));
+}
+
+.from-purple-400 {
+  --tw-gradient-from: #9f7aea;
+  --tw-gradient-stops: var(--tw-gradient-from), var(--tw-gradient-to, rgba(159, 122, 234, 0));
+}
+
+.via-pink-500 {
+  --tw-gradient-stops: var(--tw-gradient-from), #ed64a6, var(--tw-gradient-to, rgba(237, 100, 166, 0));
+}
+
+.to-red-500 {
+  --tw-gradient-to: #f56565;
 }
