@@ -10,8 +10,8 @@
   --card-height: 35vw; /* Adjust height */
   --card-margin: 2vw; /* Reduced margin */
   --numcards: 4;
-  --card-top-offset:6rem; /* Added missing offset */
-  --card-index:1;
+  --card-top-offset: 6rem; /* Added missing offset */
+  --card-index: 1;
 }
 
 body {
@@ -23,10 +23,8 @@ body {
 
 #cards {
   list-style: none;
-  /* display: flex; */ /*  Change back to grid  */
-  /* flex-direction: column;  Remove this line */
   display: grid;
-  grid-template-columns: 1fr; /* Single column layout */
+  grid-template-columns: 1fr; /* Single column layout for smaller screens */
   grid-template-rows: repeat(var(--numcards), var(--card-height)); /* Define row heights */
   gap: var(--card-margin); /* Gap between cards */
   padding-bottom: calc(var(--numcards) * var(--card-top-offset)); /* Add padding for the stacking offset */
@@ -34,10 +32,10 @@ body {
 }
 
 .card {
-  position: sticky; /*  Enable sticky positioning */
+  position: sticky; /* Enable sticky positioning */
   top: 0; /* Stick to the top of the viewport */
-  padding-top: calc(var(--card-index) * var(--card-top-offset)); /*  Offset each card */
-  margin:2rem 10rem;
+  padding-top: calc(var(--card-index) * var(--card-top-offset)); /* Offset each card */
+  margin: 2rem 10rem;
 }
 
 .card__content {
@@ -46,7 +44,6 @@ body {
   color: rgb(10, 5, 7);
   border-radius: 1em;
   overflow: hidden;
-
   display: grid;
   grid-template-areas: 'text img';
   grid-template-columns: 1fr 1fr;
@@ -75,26 +72,70 @@ body {
   object-fit: cover;
 }
 
-/* Media Queries */
-@media (max-width: 640px) {
+/* Mobile-first styles */
+@media (max-width: 768px) {
+  #cards {
+    grid-template-columns: 1fr; /* Single column on smaller screens */
+    grid-template-rows: auto; /* Allow rows to adjust automatically */
+    gap: 2rem; /* Larger gap for better spacing */
+    padding-bottom: 2rem; /* Adjust bottom padding */
+    margin-bottom: 1rem;
+  }
+
+  .card {
+    margin: 1rem; /* Reduce margins for smaller screens */
+    padding-top: 1rem; /* Reduce the padding at the top */
+  }
+
+  .card__content {
+    grid-template-columns: 1fr; /* Stack text and image in a single column */
+    grid-template-areas: 
+      "text"
+      "img"; /* Stack the text and image vertically */
+  }
+
+  .card__content > div {
+    width: 100%; /* Make text section full width */
+    padding: 1rem; /* Add padding for better spacing */
+  }
+
+  .card__content > figure {
+    width: 100%; /* Ensure the image takes full width */
+    padding: 0.5rem; /* Padding around the image */
+  }
+
+  .card__content > figure > img {
+    height: auto; /* Allow images to scale proportionally */
+    object-fit: cover; /* Ensure the image covers its container without distortion */
+  }
+
   .container {
     padding-left: 1rem;
     padding-right: 1rem;
   }
+}
 
+@media (max-width: 480px) {
+  /* Additional tweaks for extra small devices */
   #cards {
-    margin-bottom: 1em;
+    margin-bottom: 1rem;
+    gap: 1.5rem;
+  }
+
+  .card {
+    margin: 0.5rem; /* Smaller margin for compact screens */
+  }
+
+  .card__content > div {
+    padding: 0.5rem; /* Less padding for very small screens */
+  }
+
+  .card__content > figure {
+    padding: 0.25rem; /* Less padding around the image */
   }
 }
 
-/* Fix the spacing between cards for smaller screen sizes */
-@media (max-width: 768px) {
-  #cards {
-    gap: 2vw; /* Adjust gap for small screens */
-  }
-}
-
-/* Additional Tailwind-like utilities (optional) */
+/* Tailwind-like utilities (optional) */
 .bg-gradient-to-r {
   background-image: linear-gradient(to right, var(--tw-gradient-stops));
 }
