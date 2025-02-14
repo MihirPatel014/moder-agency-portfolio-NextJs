@@ -6,14 +6,8 @@ import picture_2 from '../assests/picture_2.jpg';
 import picture_3 from '../assests/picture_3.jpg';
 import picture_4 from '../assests/picture_4.jpg';
 
-interface CardData {
-  id: string;
-  title: string;
-  description: string;
-  imageUrl: StaticImageData;
-}
 
-const cardData: CardData[] = [
+const cardData: CardProps[] = [
   {
     id: 'card_1',
     title: 'Web Development',
