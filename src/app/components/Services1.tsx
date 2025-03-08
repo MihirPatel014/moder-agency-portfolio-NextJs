@@ -1,13 +1,17 @@
-"use client";
 
+import Image, { StaticImageData } from 'next/image';
 import React from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faBullhorn,  faPenNib, faCode } from "@fortawesome/free-solid-svg-icons";
-import { 
+import { faBullhorn, faPenNib, faCode } from "@fortawesome/free-solid-svg-icons";
+import {
   faMagnifyingGlass,
   faMoneyBill,
   faEnvelope,
 } from "@fortawesome/free-solid-svg-icons";
+import person_image from '../assests/sign3.jpg';
+import { IconDefinition } from "@fortawesome/fontawesome-common-types"; // Import the correct type
+
+const person_img: StaticImageData = person_image;
 
 const services = [
   {
@@ -85,10 +89,12 @@ const Services = () => {
           {/* Center Image */}
           <div className="col-span-3 lg:col-span-1 flex justify-center">
             <div className="w-full max-w-sm">
-              <img
-                src="https://cdn.easyfrontend.com/pictures/sign-in-up/sign3.jpg"
-                alt="Service Illustration"
+              <Image
+                src={person_img}
+                width={600}
+                height={400}
                 className="rounded-2xl shadow-lg"
+                alt="Service Illustration"
               />
             </div>
           </div>
@@ -109,7 +115,7 @@ const ServiceItem = ({
   service,
   isRightAlign = false,
 }: {
-  service: { id: number; title: string; description: string; icon: any; color: string };
+  service: { id: number; title: string; description: string; icon: IconDefinition; color: string }; // Use the correct type here
   isRightAlign?: boolean;
 }) => (
   <div className={`flex items-center gap-4 ${isRightAlign ? "lg:text-end lg:flex-row-reverse" : ""}`}>

@@ -1,5 +1,6 @@
 import React from "react";
 import { Marquee } from "@/components/magicui/marquee";
+import Image from 'next/image';
 interface Testimonial {
   name: string;
   role: string;
@@ -54,9 +55,11 @@ const TestimonialCard = ({ name, role, content, image }: Testimonial) => {
   return (
     <div className="w-64 h-auto bg-white rounded-lg shadow-lg p-4 border border-yellow-600">
       <div className="flex flex-col items-center text-center">
-        <img
+        <Image
           src={image}
           alt={name}
+          width={32}
+          height={32}
           className="w-16 h-16 rounded-full object-cover mb-2"
         />
         <h3 className="text-sm font-semibold">{name}</h3>

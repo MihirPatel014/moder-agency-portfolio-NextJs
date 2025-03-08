@@ -1,5 +1,5 @@
 import React from "react";
-
+import Image from 'next/image';
 import { cn } from "@/lib/utils";
 import { Marquee } from "@/components/magicui/marquee";
 interface Testimonial {
@@ -9,7 +9,7 @@ interface Testimonial {
   image: string;
 }
 
- const testimonialsdata: Testimonial[] = [
+const testimonialsdata: Testimonial[] = [
   {
     name: "John Doe",
     role: "CEO, TechCorp",
@@ -65,7 +65,13 @@ const TestimonialCard = ({
       )}
     >
       <div className="flex flex-row items-center gap-2">
-        <img className="rounded-full" width="32" height="32" alt={name} src={image} />
+        <Image
+          className="rounded-full"
+          width={32}
+          height={32}
+          alt={name}
+          src={image} />
+
         <div className="flex flex-col">
           <figcaption className="text-sm font-medium dark:text-white">
             {name}
