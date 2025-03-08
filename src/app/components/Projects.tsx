@@ -3,11 +3,17 @@ import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 
 gsap.registerPlugin(ScrollTrigger);
+import Image, { StaticImageData } from 'next/image';
+
+// Import images directly if they're outside the public folder (if needed)
+import picture_1 from '../assests/ecommerce_image.webp';
+import picture_2 from '../assests/dashboard_image.png';
+import picture_3 from '../assests/social_media_tool-image.jpg';
 
 interface Project {
   title: string;
   description: string;
-  image: string;
+  image: StaticImageData;
   tags: string[];
 }
 
@@ -16,21 +22,21 @@ const projects: Project[] = [
     title: "E-commerce Platform",
     description:
       "A fully responsive e-commerce solution with advanced features and seamless user experience.",
-    image: "https://cdn.shopify.com/s/files/1/0070/7032/articles/ecommerce_20platforms_3c2ab809-41ff-4185-9fef-52df34de95e4.png?v=1730388944&originalWidth=1848&originalHeight=782&width=1800",
+    image: picture_1,
     tags: ["React", "Node.js", "MongoDB"],
   },
   {
     title: "AI-Powered Analytics Dashboard",
     description:
       "An intelligent analytics platform providing real-time insights and predictive analysis.",
-    image: "https://assets.justinmind.com/wp-content/uploads/2018/12/6-best-practices-for-Dashboard-Design-Justinmind-header-768x492.png",
+    image: picture_2,
     tags: ["Python", "TensorFlow", "React"],
   },
   {
     title: "Social Media Management Tool",
     description:
       "A comprehensive tool for managing multiple social media accounts with scheduling and analytics.",
-    image: "https://landingstorageaccnmbl.blob.core.windows.net/wplandingnmbl/2019/05/smm-company-2-1.jpg",
+    image: picture_3,
     tags: ["Vue.js", "Express", "PostgreSQL"],
   },
 ];
@@ -42,8 +48,10 @@ interface ProjectCardProps {
 const ProjectCard = ({ project }: ProjectCardProps) => {
   return (
     <div className="bg-white rounded-lg shadow-lg overflow-hidden">
-      <img
-        src={project.image || "/placeholder.svg"}
+      <Image
+        src={project.image}
+        width={500}
+        height={500}
         alt={project.title}
         className="w-full h-48 object-cover"
       />

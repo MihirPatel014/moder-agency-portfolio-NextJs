@@ -5,10 +5,8 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faBullhorn,  faPenNib, faCode } from "@fortawesome/free-solid-svg-icons";
 import { 
   faMagnifyingGlass,
-  faChartLine,
   faMoneyBill,
   faEnvelope,
-  faUsers,
 } from "@fortawesome/free-solid-svg-icons";
 
 const services = [
